@@ -738,9 +738,11 @@ function parseJsonlData(jsonlText, date) {
         date: date,
         id: paper.id,
         motivation: paper.AI && paper.AI.motivation ? paper.AI.motivation : '',
-        method: paper.AI && paper.AI.method ? paper.AI.method : '',
-        result: paper.AI && paper.AI.result ? paper.AI.result : '',
-        conclusion: paper.AI && paper.AI.conclusion ? paper.AI.conclusion : ''
+        challenges: paper.AI && paper.AI.challenges ? paper.AI.challenges : '',
+        contributions: paper.AI && paper.AI.contributions ? paper.AI.contributions : '',
+        results: paper.AI && paper.AI.results ? paper.AI.results : '',
+        conclusion: paper.AI && paper.AI.conclusion ? paper.AI.conclusion : '',
+        related_work: paper.AI && paper.AI.related_work ? paper.AI.related_work : ''
       });
     } catch (error) {
       console.error('解析JSON行失败:', error, line);
@@ -876,9 +878,11 @@ function renderPapers() {
         a.summary,
         a.details || '',
         a.motivation || '',
-        a.method || '',
-        a.result || '',
-        a.conclusion || ''
+        a.challenges || '',
+        a.contributions || '',
+        a.results || '',
+        a.conclusion || '',
+        a.related_work || ''
       ].join(' ').toLowerCase();
       const hayB = [
         b.title,
@@ -887,9 +891,11 @@ function renderPapers() {
         b.summary,
         b.details || '',
         b.motivation || '',
-        b.method || '',
-        b.result || '',
-        b.conclusion || ''
+        b.challenges || '',
+        b.contributions || '',
+        b.results || '',
+        b.conclusion || '',
+        b.related_work || ''
       ].join(' ').toLowerCase();
       const am = hayA.includes(q);
       const bm = hayB.includes(q);
@@ -907,9 +913,11 @@ function renderPapers() {
         p.summary,
         p.details || '',
         p.motivation || '',
-        p.method || '',
-        p.result || '',
-        p.conclusion || ''
+        p.challenges || '',
+        p.contributions || '',
+        p.results || '',
+        p.conclusion || '',
+        p.related_work || ''
       ].join(' ').toLowerCase();
       const matched = hay.includes(q);
       p.isMatched = matched;
@@ -1204,18 +1212,26 @@ function showPaperDetails(paper, paperIndex) {
   const highlightedMotivation = paper.motivation && modalTitleTerms.length > 0 
     ? highlightMatches(paper.motivation, modalTitleTerms, 'keyword-highlight') 
     : paper.motivation;
-  
-  const highlightedMethod = paper.method && modalTitleTerms.length > 0 
-    ? highlightMatches(paper.method, modalTitleTerms, 'keyword-highlight') 
-    : paper.method;
-  
-  const highlightedResult = paper.result && modalTitleTerms.length > 0 
-    ? highlightMatches(paper.result, modalTitleTerms, 'keyword-highlight') 
-    : paper.result;
-  
+
+  const highlightedChallenges = paper.challenges && modalTitleTerms.length > 0 
+    ? highlightMatches(paper.challenges, modalTitleTerms, 'keyword-highlight') 
+    : paper.challenges;
+
+  const highlightedContributions = paper.contributions && modalTitleTerms.length > 0 
+    ? highlightMatches(paper.contributions, modalTitleTerms, 'keyword-highlight') 
+    : paper.contributions;
+
+  const highlightedResults = paper.results && modalTitleTerms.length > 0 
+    ? highlightMatches(paper.results, modalTitleTerms, 'keyword-highlight') 
+    : paper.results;
+
   const highlightedConclusion = paper.conclusion && modalTitleTerms.length > 0 
     ? highlightMatches(paper.conclusion, modalTitleTerms, 'keyword-highlight') 
     : paper.conclusion;
+
+  const highlightedRelatedWork = paper.related_work && modalTitleTerms.length > 0 
+    ? highlightMatches(paper.related_work, modalTitleTerms, 'keyword-highlight') 
+    : paper.related_work;
   
   // 判断是否需要显示高亮说明
   const showHighlightLegend = activeKeywords.length > 0 || activeAuthors.length > 0;
@@ -1235,10 +1251,12 @@ function showPaperDetails(paper, paperIndex) {
       
       <div class="paper-sections">
         ${paper.motivation ? `<div class="paper-section"><h4>Motivation</h4><p>${highlightedMotivation}</p></div>` : ''}
-        ${paper.method ? `<div class="paper-section"><h4>Method</h4><p>${highlightedMethod}</p></div>` : ''}
-        ${paper.result ? `<div class="paper-section"><h4>Result</h4><p>${highlightedResult}</p></div>` : ''}
+        ${paper.challenges ? `<div class="paper-section"><h4>Challenges</h4><p>${highlightedChallenges}</p></div>` : ''}
+        ${paper.contributions ? `<div class="paper-section"><h4>Contributions</h4><p>${highlightedContributions}</p></div>` : ''}
+        ${paper.results ? `<div class="paper-section"><h4>Results</h4><p>${highlightedResults}</p></div>` : ''}
         ${paper.conclusion ? `<div class="paper-section"><h4>Conclusion</h4><p>${highlightedConclusion}</p></div>` : ''}
-      </div>
+        ${paper.related_work ? `<div class="paper-section"><h4>Related Work</h4><p>${highlightedRelatedWork}</p></div>` : ''}
+        </div>
       
       ${highlightedAbstract ? `<h3>Abstract</h3><p class="original-abstract">${highlightedAbstract}</p>` : ''}
       
