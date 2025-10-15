@@ -10,11 +10,15 @@ TL;DR: {tldr}
   <summary>Details</summary>
 Motivation: {motivation}
 
-Method: {method}
+Challenges: {challenges}
 
-Result: {result}
+Contributions: {contributions}
+
+Results: {results}
 
 Conclusion: {conclusion}
+
+Related Work: {related_work}
 
 Abstract: {summary}
 
