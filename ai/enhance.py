@@ -66,9 +66,11 @@ def process_single_item(chain, item: Dict, language: str) -> Dict:
     default_ai_fields = {
         "tldr": "Summary generation failed",
         "motivation": "Motivation analysis unavailable",
-        "method": "Method extraction failed",
-        "result": "Result analysis unavailable",
-        "conclusion": "Conclusion extraction failed"
+        "challenges": "Challenges extraction failed",
+        "contributions": "Contributions extraction failed",
+        "results": "Results analysis unavailable",
+        "conclusion": "Conclusion extraction failed",
+        "related_work": "Related work extraction failed"
     }
     
     try:
@@ -150,9 +152,11 @@ def process_all_items(data: List[Dict], model_name: str, language: str, max_work
                 processed_data[idx]['AI'] = {
                     "tldr": "Processing failed",
                     "motivation": "Processing failed",
-                    "method": "Processing failed",
-                    "result": "Processing failed",
-                    "conclusion": "Processing failed"
+                    "challenges": "Processing failed",
+                    "contributions": "Processing failed",
+                    "results": "Processing failed",
+                    "conclusion": "Processing failed",
+                    "related_work": "Processing failed"
                 }
     
     return processed_data
